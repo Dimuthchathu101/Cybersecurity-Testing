@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <style>
+        .form-box { max-width: 400px; margin: 40px auto; background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 2px 8px #ccc; }
+        label { display: block; margin-top: 12px; }
+        input[type=text], input[type=email], input[type=password], select { width: 100%; padding: 8px; margin-top: 4px; border-radius: 4px; border: 1px solid #bbb; }
+        .strength { margin-top: 4px; font-size: 0.95em; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+    <script>
+    function checkStrength(pw) {
+        let s = 'Weak';
+        let color = 'red';
+        if (pw.length >= 8 && /[A-Z]/.test(pw) && /[0-9]/.test(pw) && /[^A-Za-z0-9]/.test(pw)) { s = 'Strong'; color = 'green'; }
+        else if (pw.length >= 6 && /[A-Z]/.test(pw) && /[0-9]/.test(pw)) { s = 'Medium'; color = 'orange'; }
+        document.getElementById('pw-strength').textContent = s;
+        document.getElementById('pw-strength').style.color = color;
+    }
+    </script>
+</head>
+<body style="background:#f4f4f4;">
+    <div class="form-box">
+        <h2>Register</h2>
+        {% if error %}<div class="error">{{ error }}</div>{% endif %}
+        {% if success %}<div class="success">{{ success }}</div>{% endif %}
+        <form method="POST">
+            <label>Username</label>
+            <input type="text" name="username" required>
+            <label>Email</label>
+            <input type="email" name="email" required>
+            <label>Password</label>
+            <input type="password" name="password" required oninput="checkStrength(this.value)">
+            <div class="strength">Strength: <span id="pw-strength">Weak</span></div>
+            <label>Confirm Password</label>
+            <input type="password" name="confirm" required>
+            <label>Role</label>
+            <select name="role" required>
+                <option value="user">User</option>
+                {% if not admin_exists %}
+                <option value="admin">Admin</option>
+                {% endif %}
+            </select>
+            <button type="submit" style="margin-top:16px">Register</button>
+        </form>
+        <a href="/login">Back to Login</a>
+    </div>
+</body>
+</html> 

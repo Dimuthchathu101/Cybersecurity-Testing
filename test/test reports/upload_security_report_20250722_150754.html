@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Security Test Report</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 950px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 16px #bbb; }
+        h1 { text-align: center; color: #222; letter-spacing: 1px; }
+        .legend { margin: 20px 0; text-align: center; }
+        .legend span { display: inline-block; width: 20px; height: 20px; border-radius: 3px; margin-right: 8px; }
+        .test-card { margin: 24px 0; padding: 18px 20px; border-radius: 10px; box-shadow: 0 2px 8px #e0e0e0; transition: box-shadow 0.2s; }
+        .test-card:hover { box-shadow: 0 4px 16px #b0b0b0; }
+        .test-header { display: flex; align-items: center; font-size: 1.2em; margin-bottom: 6px; }
+        .test-icon { font-size: 1.5em; margin-right: 12px; }
+        .test-title { font-weight: bold; color: #222; }
+        .test-desc { color: #555; margin-bottom: 8px; font-size: 0.98em; }
+        .test-status { margin-bottom: 6px; }
+        .test-details pre { background: #f8f9fa; padding: 10px; border-radius: 6px; font-size: 0.97em; overflow-x: auto; }
+        h2 { color: #1a73e8; margin-top: 40px; }
+        ul { margin-left: 20px; }
+        @media (max-width: 600px) {
+            .container { padding: 10px; }
+            .test-card { padding: 10px 6px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Security Test Report</h1>
+        <p><b>Date:</b> 2025-07-22 15:07:54</p>
+        <div class="legend">
+            <b>Legend:</b>
+            <span style="background:#e6ffed; border:2px solid #28a745"></span> Pass
+            <span style="background:#ffeaea; border:2px solid #dc3545"></span> Fail
+        </div>
+        
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">File Type Validation Test</span>
+        </div>
+        <div class="test-desc">Try to upload .exe, .php, and .sh files and check if they are accepted.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Upload .exe: Accepted</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">File Type Validation Test</span>
+        </div>
+        <div class="test-desc">Try to upload .exe, .php, and .sh files and check if they are accepted.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Upload .php: Accepted</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">File Type Validation Test</span>
+        </div>
+        <div class="test-desc">Try to upload .exe, .php, and .sh files and check if they are accepted.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Upload .sh: Accepted</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">File Size Limit Test</span>
+        </div>
+        <div class="test-desc">Try to upload a very large file and check for rejection.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Large file rejected.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Path Traversal Test</span>
+        </div>
+        <div class="test-desc">Try to upload a file with a path traversal filename (../../evil.txt) and check for rejection.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Path traversal accepted!</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">XSS in Filename Test</span>
+        </div>
+        <div class="test-desc">Try to upload a file with a filename containing a script tag and check if it is rendered unsanitized.</div>
+        <div class="test-status"><b>Status:</b> 500</div>
+        <div class="test-details"><pre>No XSS rendered.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">Duplicate File Upload Test</span>
+        </div>
+        <div class="test-desc">Try to upload the same file twice and check for handling of duplicates.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Duplicate accepted.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">Error Message Consistency Test</span>
+        </div>
+        <div class="test-desc">Check if error messages are consistent for valid and invalid uploads.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Error messages are consistent.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">Timing Attack Test</span>
+        </div>
+        <div class="test-desc">Measure response time for valid vs invalid uploads to detect timing leaks.</div>
+        <div class="test-status"><b>Status:</b> N/A</div>
+        <div class="test-details"><pre>Valid file time: 0.0013s, Invalid file time: 0.0016s</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Rate Limiting Test</span>
+        </div>
+        <div class="test-desc">Check if repeated upload requests trigger rate limiting or blocking.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>No rate limiting detected.</pre></div>
+    </div>
+    
+        <h2>Recommendations</h2>
+        <ul>
+            <li><b>File Type Validation Test:</b> Try to upload .exe, .php, and .sh files and check if they are accepted.<br><span style="color:#1a73e8"><b>How to fix:</b> Restrict allowed file types on the server side. Validate file extensions and MIME types.</span></li><li><b>File Type Validation Test:</b> Try to upload .exe, .php, and .sh files and check if they are accepted.<br><span style="color:#1a73e8"><b>How to fix:</b> Restrict allowed file types on the server side. Validate file extensions and MIME types.</span></li><li><b>File Type Validation Test:</b> Try to upload .exe, .php, and .sh files and check if they are accepted.<br><span style="color:#1a73e8"><b>How to fix:</b> Restrict allowed file types on the server side. Validate file extensions and MIME types.</span></li><li><b>Path Traversal Test:</b> Try to upload a file with a path traversal filename (../../evil.txt) and check for rejection.<br><span style="color:#1a73e8"><b>How to fix:</b> Sanitize filenames and prevent directory traversal attacks.</span></li><li><b>Rate Limiting Test:</b> Check if repeated upload requests trigger rate limiting or blocking.<br><span style="color:#1a73e8"><b>How to fix:</b> Add rate limiting to prevent abuse of the upload endpoint.</span></li>
+        </ul>
+    </div>
+</body>
+</html>

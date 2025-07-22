@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Comments Security Test Report</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 950px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 16px #bbb; }
+        h1 { text-align: center; color: #222; letter-spacing: 1px; }
+        .legend { margin: 20px 0; text-align: center; }
+        .legend span { display: inline-block; width: 20px; height: 20px; border-radius: 3px; margin-right: 8px; }
+        .test-card { margin: 24px 0; padding: 18px 20px; border-radius: 10px; box-shadow: 0 2px 8px #e0e0e0; transition: box-shadow 0.2s; }
+        .test-card:hover { box-shadow: 0 4px 16px #b0b0b0; }
+        .test-header { display: flex; align-items: center; font-size: 1.2em; margin-bottom: 6px; }
+        .test-icon { font-size: 1.5em; margin-right: 12px; }
+        .test-title { font-weight: bold; color: #222; }
+        .test-desc { color: #555; margin-bottom: 8px; font-size: 0.98em; }
+        .test-status { margin-bottom: 6px; }
+        .test-details pre { background: #f8f9fa; padding: 10px; border-radius: 6px; font-size: 0.97em; overflow-x: auto; }
+        h2 { color: #1a73e8; margin-top: 40px; }
+        ul { margin-left: 20px; }
+        @media (max-width: 600px) {
+            .container { padding: 10px; }
+            .test-card { padding: 10px 6px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Comments Security Test Report</h1>
+        <p><b>Date:</b> 2025-07-22 13:57:41</p>
+        <div class="legend">
+            <b>Legend:</b>
+            <span style="background:#e6ffed; border:2px solid #28a745"></span> Pass
+            <span style="background:#ffeaea; border:2px solid #dc3545"></span> Fail
+        </div>
+        
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">XSS Injection Test</span>
+        </div>
+        <div class="test-desc">Submit a comment with a script tag and check if it is rendered unsanitized.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Payload present in page: False</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">SQL Injection Test</span>
+        </div>
+        <div class="test-desc">Submit a comment with SQL injection payload and check for errors or data leakage.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>No SQL error or leakage detected.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Spam/Duplicate Comment Test</span>
+        </div>
+        <div class="test-desc">Submit the same comment twice within 1 minute and check for spam prevention.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Duplicate comment allowed!</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Long Comment Test</span>
+        </div>
+        <div class="test-desc">Submit a comment longer than 500 characters and check for rejection.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Long comment accepted!</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Reply Threading Test</span>
+        </div>
+        <div class="test-desc">Submit a reply to a comment and check if it appears nested.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Reply not nested or missing!</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Upvote/Downvote Abuse Test</span>
+        </div>
+        <div class="test-desc">Try to upvote/downvote the same comment multiple times as the same user.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Multiple votes allowed!</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Unauthorized Delete Test</span>
+        </div>
+        <div class="test-desc">Try to delete a comment as a different user and check for rejection.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Unauthorized delete allowed!</pre></div>
+    </div>
+    
+        <h2>Recommendations</h2>
+        <ul>
+            <li><b>Spam/Duplicate Comment Test:</b> Submit the same comment twice within 1 minute and check for spam prevention.<br><span style="color:#1a73e8"><b>How to fix:</b> Implement rate limiting and duplicate comment checks.</span></li><li><b>Long Comment Test:</b> Submit a comment longer than 500 characters and check for rejection.<br><span style="color:#1a73e8"><b>How to fix:</b> Enforce server-side length validation for comments.</span></li><li><b>Reply Threading Test:</b> Submit a reply to a comment and check if it appears nested.<br><span style="color:#1a73e8"><b>How to fix:</b> Ensure replies are properly linked to parent comments and displayed nested.</span></li><li><b>Upvote/Downvote Abuse Test:</b> Try to upvote/downvote the same comment multiple times as the same user.<br><span style="color:#1a73e8"><b>How to fix:</b> Prevent multiple votes per user per comment (by username or session).</span></li><li><b>Unauthorized Delete Test:</b> Try to delete a comment as a different user and check for rejection.<br><span style="color:#1a73e8"><b>How to fix:</b> Check that only the comment owner or admin can delete a comment.</span></li>
+        </ul>
+    </div>
+</body>
+</html>

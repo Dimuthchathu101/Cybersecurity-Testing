@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Security Test Report</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 950px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 16px #bbb; }
+        h1 { text-align: center; color: #222; letter-spacing: 1px; }
+        .legend { margin: 20px 0; text-align: center; }
+        .legend span { display: inline-block; width: 20px; height: 20px; border-radius: 3px; margin-right: 8px; }
+        .test-card { margin: 24px 0; padding: 18px 20px; border-radius: 10px; box-shadow: 0 2px 8px #e0e0e0; transition: box-shadow 0.2s; }
+        .test-card:hover { box-shadow: 0 4px 16px #b0b0b0; }
+        .test-header { display: flex; align-items: center; font-size: 1.2em; margin-bottom: 6px; }
+        .test-icon { font-size: 1.5em; margin-right: 12px; }
+        .test-title { font-weight: bold; color: #222; }
+        .test-desc { color: #555; margin-bottom: 8px; font-size: 0.98em; }
+        .test-status { margin-bottom: 6px; }
+        .test-details pre { background: #f8f9fa; padding: 10px; border-radius: 6px; font-size: 0.97em; overflow-x: auto; }
+        h2 { color: #1a73e8; margin-top: 40px; }
+        ul { margin-left: 20px; }
+        @media (max-width: 600px) {
+            .container { padding: 10px; }
+            .test-card { padding: 10px 6px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Search Security Test Report</h1>
+        <p><b>Date:</b> 2025-07-22 15:06:27</p>
+        <div class="legend">
+            <b>Legend:</b>
+            <span style="background:#e6ffed; border:2px solid #28a745"></span> Pass
+            <span style="background:#ffeaea; border:2px solid #dc3545"></span> Fail
+        </div>
+        
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">SQL Injection Test</span>
+        </div>
+        <div class="test-desc">Attempt SQL injection in the search query and check for errors or data leakage.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>No SQL error or leakage detected.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Input Validation Test</span>
+        </div>
+        <div class="test-desc">Submit empty, long, or invalid search queries and check for rejection.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Empty/long query accepted!</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">XSS in Search Query Test</span>
+        </div>
+        <div class="test-desc">Submit a search query with a script tag and check if it is rendered unsanitized.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>No XSS rendered.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">Error Message Consistency Test</span>
+        </div>
+        <div class="test-desc">Check if error messages are consistent for valid and invalid queries.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Error messages are consistent.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">Timing Attack Test</span>
+        </div>
+        <div class="test-desc">Measure response time for valid vs invalid queries to detect timing leaks.</div>
+        <div class="test-status"><b>Status:</b> N/A</div>
+        <div class="test-details"><pre>Valid query time: 0.0014s, SQLi query time: 0.0012s</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">Output Leakage Test</span>
+        </div>
+        <div class="test-desc">Check if sensitive system info or SQL errors are leaked in the output.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>No sensitive info leaked.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Rate Limiting Test</span>
+        </div>
+        <div class="test-desc">Check if repeated search requests trigger rate limiting or blocking.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>No rate limiting detected.</pre></div>
+    </div>
+    
+        <h2>Recommendations</h2>
+        <ul>
+            <li><b>Input Validation Test:</b> Submit empty, long, or invalid search queries and check for rejection.<br><span style="color:#1a73e8"><b>How to fix:</b> Enforce server-side validation for search queries. Reject empty, overly long, or invalid values.</span></li><li><b>Rate Limiting Test:</b> Check if repeated search requests trigger rate limiting or blocking.<br><span style="color:#1a73e8"><b>How to fix:</b> Add rate limiting to prevent abuse of the search endpoint.</span></li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weak Dashboard Security Test Report</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 950px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 16px #bbb; }
+        h1 { text-align: center; color: #222; letter-spacing: 1px; }
+        .legend { margin: 20px 0; text-align: center; }
+        .legend span { display: inline-block; width: 20px; height: 20px; border-radius: 3px; margin-right: 8px; }
+        .test-card { margin: 24px 0; padding: 18px 20px; border-radius: 10px; box-shadow: 0 2px 8px #e0e0e0; transition: box-shadow 0.2s; }
+        .test-card:hover { box-shadow: 0 4px 16px #b0b0b0; }
+        .test-header { display: flex; align-items: center; font-size: 1.2em; margin-bottom: 6px; }
+        .test-icon { font-size: 1.5em; margin-right: 12px; }
+        .test-title { font-weight: bold; color: #222; }
+        .test-desc { color: #555; margin-bottom: 8px; font-size: 0.98em; }
+        .test-status { margin-bottom: 6px; }
+        .test-details pre { background: #f8f9fa; padding: 10px; border-radius: 6px; font-size: 0.97em; overflow-x: auto; }
+        h2 { color: #1a73e8; margin-top: 40px; }
+        ul { margin-left: 20px; }
+        @media (max-width: 600px) {
+            .container { padding: 10px; }
+            .test-card { padding: 10px 6px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weak Dashboard Security Test Report</h1>
+        <p><b>Date:</b> 2025-07-22 15:09:57</p>
+        <div class="legend">
+            <b>Legend:</b>
+            <span style="background:#e6ffed; border:2px solid #28a745"></span> Pass
+            <span style="background:#ffeaea; border:2px solid #dc3545"></span> Fail
+        </div>
+        
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Session Fixation Test</span>
+        </div>
+        <div class="test-desc">Login with a fixed session ID and check if it is accepted.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Dashboard accessible with fixed session ID.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Predictable Session ID Test</span>
+        </div>
+        <div class="test-desc">Check if the session ID is predictable (e.g., username reversed).</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Session ID is predictable!</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Authentication Required Test</span>
+        </div>
+        <div class="test-desc">Check if /weak-dashboard is accessible without login.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Dashboard accessible without login!</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">Privilege Escalation Test</span>
+        </div>
+        <div class="test-desc">Try to access another user's dashboard by changing the session ID.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Privilege escalation not possible.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Input Validation Test</span>
+        </div>
+        <div class="test-desc">Submit empty or invalid username and check for rejection.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Empty username accepted!</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Error Message Consistency Test</span>
+        </div>
+        <div class="test-desc">Check if error messages are consistent for valid and invalid logins.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Error messages differ!</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">Timing Attack Test</span>
+        </div>
+        <div class="test-desc">Measure response time for valid vs invalid login to detect timing leaks.</div>
+        <div class="test-status"><b>Status:</b> N/A</div>
+        <div class="test-details"><pre>Valid username time: 0.0019s, Invalid username time: 0.0017s</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Output Leakage Test</span>
+        </div>
+        <div class="test-desc">Check if sensitive info (e.g., session ID) is leaked in the output.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Session ID leaked!</pre></div>
+    </div>
+    
+        <h2>Recommendations</h2>
+        <ul>
+            <li><b>Session Fixation Test:</b> Login with a fixed session ID and check if it is accepted.<br><span style="color:#1a73e8"><b>How to fix:</b> Regenerate session IDs after login and do not accept user-supplied session IDs. Use secure, random session tokens.</span></li><li><b>Predictable Session ID Test:</b> Check if the session ID is predictable (e.g., username reversed).<br><span style="color:#1a73e8"><b>How to fix:</b> Use cryptographically secure random session IDs.</span></li><li><b>Authentication Required Test:</b> Check if /weak-dashboard is accessible without login.<br><span style="color:#1a73e8"><b>How to fix:</b> Require authentication for dashboard access and redirect unauthenticated users to login.</span></li><li><b>Input Validation Test:</b> Submit empty or invalid username and check for rejection.<br><span style="color:#1a73e8"><b>How to fix:</b> Validate and sanitize all user input. Enforce proper username format.</span></li><li><b>Error Message Consistency Test:</b> Check if error messages are consistent for valid and invalid logins.<br><span style="color:#1a73e8"><b>How to fix:</b> Return generic error messages for failed logins to avoid information leakage.</span></li><li><b>Output Leakage Test:</b> Check if sensitive info (e.g., session ID) is leaked in the output.<br><span style="color:#1a73e8"><b>How to fix:</b> Do not leak sensitive info (e.g., session ID) in the output.</span></li>
+        </ul>
+    </div>
+</body>
+</html>

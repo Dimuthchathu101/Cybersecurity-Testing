@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register Security Test Report</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 950px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 16px #bbb; }
+        h1 { text-align: center; color: #222; letter-spacing: 1px; }
+        .legend { margin: 20px 0; text-align: center; }
+        .legend span { display: inline-block; width: 20px; height: 20px; border-radius: 3px; margin-right: 8px; }
+        .test-card { margin: 24px 0; padding: 18px 20px; border-radius: 10px; box-shadow: 0 2px 8px #e0e0e0; transition: box-shadow 0.2s; }
+        .test-card:hover { box-shadow: 0 4px 16px #b0b0b0; }
+        .test-header { display: flex; align-items: center; font-size: 1.2em; margin-bottom: 6px; }
+        .test-icon { font-size: 1.5em; margin-right: 12px; }
+        .test-title { font-weight: bold; color: #222; }
+        .test-desc { color: #555; margin-bottom: 8px; font-size: 0.98em; }
+        .test-status { margin-bottom: 6px; }
+        .test-details pre { background: #f8f9fa; padding: 10px; border-radius: 6px; font-size: 0.97em; overflow-x: auto; }
+        h2 { color: #1a73e8; margin-top: 40px; }
+        ul { margin-left: 20px; }
+        @media (max-width: 600px) {
+            .container { padding: 10px; }
+            .test-card { padding: 10px 6px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Register Security Test Report</h1>
+        <p><b>Date:</b> 2025-07-22 15:03:58</p>
+        <div class="legend">
+            <b>Legend:</b>
+            <span style="background:#e6ffed; border:2px solid #28a745"></span> Pass
+            <span style="background:#ffeaea; border:2px solid #dc3545"></span> Fail
+        </div>
+        
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Input Validation Test</span>
+        </div>
+        <div class="test-desc">Submit invalid/empty username, email, and password and check for rejection.</div>
+        <div class="test-status"><b>Status:</b> 404</div>
+        <div class="test-details"><pre>Invalid input accepted!</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Duplicate Username/Email Test</span>
+        </div>
+        <div class="test-desc">Try to register with an existing username or email and check for rejection.</div>
+        <div class="test-status"><b>Status:</b> 404</div>
+        <div class="test-details"><pre>Duplicate accepted!</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Password Policy Test</span>
+        </div>
+        <div class="test-desc">Check if the password must meet minimum length or complexity requirements.</div>
+        <div class="test-status"><b>Status:</b> 404</div>
+        <div class="test-details"><pre>Weak password accepted!</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">Role Escalation Test</span>
+        </div>
+        <div class="test-desc">Try to register as admin when an admin already exists and check for rejection.</div>
+        <div class="test-status"><b>Status:</b> 404</div>
+        <div class="test-details"><pre>Admin registration blocked.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">CSRF Protection Test</span>
+        </div>
+        <div class="test-desc">Check if the registration form includes a CSRF token field.</div>
+        <div class="test-status"><b>Status:</b> 404</div>
+        <div class="test-details"><pre>No CSRF token found.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">Timing Attack Test</span>
+        </div>
+        <div class="test-desc">Measure response time for valid vs invalid registration to detect timing leaks.</div>
+        <div class="test-status"><b>Status:</b> N/A</div>
+        <div class="test-details"><pre>Valid registration time: 0.0016s, Invalid registration time: 0.0013s</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">Error Message Consistency Test</span>
+        </div>
+        <div class="test-desc">Check if error messages are consistent for different invalid inputs.</div>
+        <div class="test-status"><b>Status:</b> 404</div>
+        <div class="test-details"><pre>Error messages are consistent.</pre></div>
+    </div>
+    
+        <h2>Recommendations</h2>
+        <ul>
+            <li><b>Input Validation Test:</b> Submit invalid/empty username, email, and password and check for rejection.<br><span style="color:#1a73e8"><b>How to fix:</b> Validate and sanitize all user input. Enforce proper username, email, and password format.</span></li><li><b>Duplicate Username/Email Test:</b> Try to register with an existing username or email and check for rejection.<br><span style="color:#1a73e8"><b>How to fix:</b> Check for existing usernames and emails before registration and return a generic error message.</span></li><li><b>Password Policy Test:</b> Check if the password must meet minimum length or complexity requirements.<br><span style="color:#1a73e8"><b>How to fix:</b> Enforce strong password policies (length, complexity, etc.) on the server side.</span></li><li><b>CSRF Protection Test:</b> Check if the registration form includes a CSRF token field.<br><span style="color:#1a73e8"><b>How to fix:</b> Implement CSRF protection using tokens in all forms that modify state.</span></li>
+        </ul>
+    </div>
+</body>
+</html>

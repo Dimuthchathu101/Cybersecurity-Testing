@@ -2,19 +2,87 @@
 <html>
 <head>
     <title>Comments (Stored XSS Demo)</title>
+    <style>
+        .comment { margin-bottom: 18px; border-left: 2px solid #ccc; padding-left: 12px; }
+        .meta { color: #888; font-size: 0.95em; }
+        .reply { margin-left: 30px; }
+        .actions { margin-top: 4px; }
+        .actions form { display: inline; }
+        .votes { font-weight: bold; color: #1a73e8; margin-right: 10px; }
+    </style>
 </head>
 <body>
     <h1>Comments (Stored XSS Demo)</h1>
+    <form method="get" style="margin-bottom:10px">
+        <label>Sort by:</label>
+        <select name="sort" onchange="this.form.submit()">
+            <option value="newest" {% if sort == 'newest' %}selected{% endif %}>Newest</option>
+            <option value="upvoted" {% if sort == 'upvoted' %}selected{% endif %}>Most Upvoted</option>
+        </select>
+    </form>
+    {% if error %}
+        <p style="color:red">{{ error }}</p>
+    {% endif %}
+    {% if success %}
+        <p style="color:green">{{ success }}</p>
+    {% endif %}
     <form method="POST">
+        <input type="hidden" name="action" value="add">
+        <input type="text" name="username" placeholder="Your name (optional)">
+        <br>
         <textarea name="comment" rows="4" cols="50" placeholder="Leave a comment..."></textarea><br>
         <button type="submit">Submit</button>
     </form>
     <h2>All Comments</h2>
-    <ul>
+    {% macro render_comment(comment, parent_username) %}
+        <div class="comment">
+            <span class="votes">{{ comment.votes }} votes</span>
+            <b>{{ comment.username }}</b> <span class="meta">({{ comment.timestamp }})</span><br>
+            {{ comment.content|safe }}
+            <div class="actions">
+                <!-- Upvote/Downvote forms -->
+                <form method="POST" style="display:inline">
+                    <input type="hidden" name="action" value="upvote">
+                    <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                    <input type="text" name="username" placeholder="Your name (to vote)" style="width:120px">
+                    <button type="submit">Upvote</button>
+                </form>
+                <form method="POST" style="display:inline">
+                    <input type="hidden" name="action" value="downvote">
+                    <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                    <input type="text" name="username" placeholder="Your name (to vote)" style="width:120px">
+                    <button type="submit">Downvote</button>
+                </form>
+                <!-- Reply form -->
+                <form method="POST" style="display:inline">
+                    <input type="hidden" name="action" value="add">
+                    <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                    <input type="text" name="username" placeholder="Your name (optional)" style="width:120px">
+                    <input type="text" name="comment" placeholder="Reply..." style="width:180px">
+                    <button type="submit">Reply</button>
+                </form>
+                <!-- Delete form -->
+                <form method="POST" style="display:inline">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                    <input type="text" name="username" placeholder="Your name (required to delete)" style="width:120px">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+            {% if comment.replies %}
+                <div class="reply">
+                    {% for reply in comment.replies %}
+                        {{ render_comment(reply, comment.username) }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    {% endmacro %}
+    <div>
         {% for comment in comments %}
-            <li>{{ comment[0]|safe }}</li>
+            {{ render_comment(comment, None) }}
         {% endfor %}
-    </ul>
-    <a href="/">Back to Login</a>
+    </div>
+    <a href="/">Back to Dashboard</a>
 </body>
 </html> 

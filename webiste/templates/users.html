@@ -1,15 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Users (IDOR Demo)</title>
+    <title>Users</title>
+    <style>
+        table { width: 90%; margin: 30px auto; border-collapse: collapse; background: #fff; box-shadow: 0 2px 8px #ccc; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+        th { background: #f0f0f0; }
+        .admin { color: #1a73e8; font-weight: bold; }
+        .actions form { display: inline; }
+        .actions button { background: #e53935; color: #fff; border: none; border-radius: 4px; padding: 4px 10px; cursor: pointer; }
+        .actions button:hover { background: #b71c1c; }
+        .top-links { text-align: center; margin: 20px; }
+    </style>
 </head>
-<body>
-    <h1>Users</h1>
-    <ul>
+<body style="background:#f4f4f4;">
+    <div class="top-links">
+        <a href="/register">Register New User</a> |
+        <a href="/profile">My Profile</a> |
+        <a href="/">Back to Dashboard</a>
+    </div>
+    <table>
+        <tr><th>Username</th><th>Email</th><th>Role</th>{% if is_admin %}<th>Actions</th>{% endif %}</tr>
         {% for user in users %}
-            <li><a href="/profile?id={{ user[0] }}">{{ user[1] }}</a></li>
+            <tr>
+                <td {% if user[3]=='admin' %}class="admin"{% endif %}>{{ user[1] }}</td>
+                <td>{{ user[2] }}</td>
+                <td>{{ user[3] }}</td>
+                {% if is_admin %}
+                <td class="actions">
+                    <form method="POST" action="/delete-user" onsubmit="return confirm('Delete user {{ user[1] }}?');">
+                        <input type="hidden" name="user_id" value="{{ user[0] }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+                {% endif %}
+            </tr>
         {% endfor %}
-    </ul>
-    <a href="/">Back to Login</a>
+    </table>
 </body>
 </html> 

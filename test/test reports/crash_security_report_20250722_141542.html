@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crash Security Test Report</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 950px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 16px #bbb; }
+        h1 { text-align: center; color: #222; letter-spacing: 1px; }
+        .legend { margin: 20px 0; text-align: center; }
+        .legend span { display: inline-block; width: 20px; height: 20px; border-radius: 3px; margin-right: 8px; }
+        .test-card { margin: 24px 0; padding: 18px 20px; border-radius: 10px; box-shadow: 0 2px 8px #e0e0e0; transition: box-shadow 0.2s; }
+        .test-card:hover { box-shadow: 0 4px 16px #b0b0b0; }
+        .test-header { display: flex; align-items: center; font-size: 1.2em; margin-bottom: 6px; }
+        .test-icon { font-size: 1.5em; margin-right: 12px; }
+        .test-title { font-weight: bold; color: #222; }
+        .test-desc { color: #555; margin-bottom: 8px; font-size: 0.98em; }
+        .test-status { margin-bottom: 6px; }
+        .test-details pre { background: #f8f9fa; padding: 10px; border-radius: 6px; font-size: 0.97em; overflow-x: auto; }
+        h2 { color: #1a73e8; margin-top: 40px; }
+        ul { margin-left: 20px; }
+        @media (max-width: 600px) {
+            .container { padding: 10px; }
+            .test-card { padding: 10px 6px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Crash Security Test Report</h1>
+        <p><b>Date:</b> 2025-07-22 14:15:42</p>
+        <div class="legend">
+            <b>Legend:</b>
+            <span style="background:#e6ffed; border:2px solid #28a745"></span> Pass
+            <span style="background:#ffeaea; border:2px solid #dc3545"></span> Fail
+        </div>
+        
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">ZeroDivisionError Test</span>
+        </div>
+        <div class="test-desc">Trigger a ZeroDivisionError and check for stack trace and logging.</div>
+        <div class="test-status"><b>Status:</b> 405</div>
+        <div class="test-details"><pre>No stack trace.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">KeyError Test</span>
+        </div>
+        <div class="test-desc">Trigger a KeyError and check for stack trace and logging.</div>
+        <div class="test-status"><b>Status:</b> 405</div>
+        <div class="test-details"><pre>No stack trace.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">TypeError Test</span>
+        </div>
+        <div class="test-desc">Trigger a TypeError and check for stack trace and logging.</div>
+        <div class="test-status"><b>Status:</b> 405</div>
+        <div class="test-details"><pre>No stack trace.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">Custom Exception Test</span>
+        </div>
+        <div class="test-desc">Trigger a custom exception and check for stack trace and logging.</div>
+        <div class="test-status"><b>Status:</b> 405</div>
+        <div class="test-details"><pre>No stack trace.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">HTTP 404 Test</span>
+        </div>
+        <div class="test-desc">Trigger a 404 Not Found error and check for proper HTTP response.</div>
+        <div class="test-status"><b>Status:</b> 405</div>
+        <div class="test-details"><pre>Got 405</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">HTTP 403 Test</span>
+        </div>
+        <div class="test-desc">Trigger a 403 Forbidden error and check for proper HTTP response.</div>
+        <div class="test-status"><b>Status:</b> 405</div>
+        <div class="test-details"><pre>Got 405</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">HTTP 500 Test</span>
+        </div>
+        <div class="test-desc">Trigger a 500 Internal Server Error and check for proper HTTP response.</div>
+        <div class="test-status"><b>Status:</b> 405</div>
+        <div class="test-details"><pre>Got 405</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Slow Response Test</span>
+        </div>
+        <div class="test-desc">Trigger a slow response and check if the delay is as expected.</div>
+        <div class="test-status"><b>Status:</b> 405</div>
+        <div class="test-details"><pre>Response time: 0.00s</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">MemoryError Test</span>
+        </div>
+        <div class="test-desc">Trigger a MemoryError and check for stack trace and logging.</div>
+        <div class="test-status"><b>Status:</b> 405</div>
+        <div class="test-details"><pre>No stack trace.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">OSError Test</span>
+        </div>
+        <div class="test-desc">Trigger an OSError (file not found) and check for stack trace and logging.</div>
+        <div class="test-status"><b>Status:</b> 405</div>
+        <div class="test-details"><pre>No stack trace.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Infinite Loop Timeout Test</span>
+        </div>
+        <div class="test-desc">Trigger an infinite loop and check if it times out and is logged.</div>
+        <div class="test-status"><b>Status:</b> 405</div>
+        <div class="test-details"><pre>No timeout!</pre></div>
+    </div>
+    
+        <h2>Recommendations</h2>
+        <ul>
+            <li><b>HTTP 404 Test:</b> Trigger a 404 Not Found error and check for proper HTTP response.<br><span style="color:#1a73e8"><b>How to fix:</b> Return a user-friendly 404 error page without leaking server details.</span></li><li><b>HTTP 403 Test:</b> Trigger a 403 Forbidden error and check for proper HTTP response.<br><span style="color:#1a73e8"><b>How to fix:</b> Return a user-friendly 403 error page without leaking server details.</span></li><li><b>HTTP 500 Test:</b> Trigger a 500 Internal Server Error and check for proper HTTP response.<br><span style="color:#1a73e8"><b>How to fix:</b> Return a user-friendly 500 error page without leaking server details.</span></li><li><b>Slow Response Test:</b> Trigger a slow response and check if the delay is as expected.<br><span style="color:#1a73e8"><b>How to fix:</b> Monitor and alert on slow responses. Consider using timeouts and async processing.</span></li><li><b>Infinite Loop Timeout Test:</b> Trigger an infinite loop and check if it times out and is logged.<br><span style="color:#1a73e8"><b>How to fix:</b> Use timeouts and watchdogs to prevent infinite loops from hanging the server.</span></li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crash Demo (Information Disclosure)</title>
+    <style>
+        .crash-box { max-width: 400px; margin: 40px auto; background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 2px 8px #ccc; }
+        label { display: block; margin-top: 12px; }
+        select, button { width: 100%; padding: 8px; margin-top: 8px; border-radius: 4px; border: 1px solid #bbb; }
+        .desc { color: #555; font-size: 0.97em; margin-bottom: 10px; }
+        ul { margin-left: 18px; }
+    </style>
+</head>
+<body style="background:#f4f4f4;">
+    <div class="crash-box">
+        <h2>Crash Demo (Information Disclosure)</h2>
+        <form method="POST">
+            <label for="type">Select error type to trigger:</label>
+            <select name="type" id="type">
+                <option value="zero">ZeroDivisionError (1/0)</option>
+                <option value="key">KeyError (missing dict key)</option>
+                <option value="type">TypeError (len(5))</option>
+                <option value="custom">Custom Exception</option>
+                <option value="404">HTTP 404 Not Found</option>
+                <option value="403">HTTP 403 Forbidden</option>
+                <option value="500">HTTP 500 Internal Server Error</option>
+                <option value="slow">Simulate Slow Response (5s)</option>
+                <option value="memory">MemoryError (allocate huge list)</option>
+                <option value="os">OSError (file not found)</option>
+                <option value="loop">Infinite Loop (3s timeout)</option>
+            </select>
+            <button type="submit">Trigger Error</button>
+        </form>
+        <div class="desc">
+            <ul>
+                <li><b>ZeroDivisionError:</b> Division by zero.</li>
+                <li><b>KeyError:</b> Accessing a missing key in a dictionary.</li>
+                <li><b>TypeError:</b> Invalid type operation.</li>
+                <li><b>Custom Exception:</b> Raises a custom error.</li>
+                <li><b>HTTP 404/403/500:</b> Triggers HTTP error responses.</li>
+                <li><b>Simulate Slow Response:</b> Waits 5 seconds before responding.</li>
+                <li><b>MemoryError:</b> Attempts to allocate a huge list.</li>
+                <li><b>OSError:</b> Tries to open a non-existent file.</li>
+                <li><b>Infinite Loop:</b> Simulates an infinite loop, but times out after 3 seconds.</li>
+            </ul>
+            <b>Note:</b> All Python exceptions are logged to <code>error_demo.log</code> in the project root.
+        </div>
+        <a href="/">Back to Dashboard</a>
+    </div>
+</body>
+</html> 
