@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ping (Command Injection Demo)</title>
+</head>
+<body>
+    <h1>Ping (Command Injection)</h1>
+    <form method="POST">
+        <label>Host:</label>
+        <input type="text" name="host" placeholder="e.g. 8.8.8.8" value="{{ host }}">
+        <button type="submit">Ping</button>
+    </form>
+    {% if output %}
+        <h2>Output</h2>
+        <pre>{{ output }}</pre>
+    {% endif %}
+    <a href="/">Back to Login</a>
+</body>
+</html> 

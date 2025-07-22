@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Open Redirect Demo</title>
+</head>
+<body>
+    <h1>Open Redirect Demo</h1>
+    <ul>
+        <li><a href="/redirect?next=/users">Internal Redirect to /users</a></li>
+        <li><a href="/redirect?next=/profile?id=1">Internal Redirect to /profile?id=1</a></li>
+        <li><a href="/redirect?next=https://example.com">External Redirect to example.com</a></li>
+        <li><a href="/redirect?next=//evil.com">Protocol-relative Redirect to evil.com</a></li>
+    </ul>
+    <form method="GET" action="/redirect">
+        <label>Test your own redirect URL:</label>
+        <input type="text" name="next" placeholder="Enter URL or path">
+        <button type="submit">Go</button>
+    </form>
+    <a href="/">Back to Login</a>
+</body>
+</html> 

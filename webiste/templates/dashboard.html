@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vulnerability Test Dashboard</title>
+</head>
+<body>
+    <h1>Vulnerability Test Dashboard</h1>
+    <ul>
+        <li><a href="/login">SQL Injection Login</a> — Login form vulnerable to SQLi</li>
+        <li><a href="/comments">Stored XSS</a> — Comment form vulnerable to stored XSS</li>
+        <li><a href="/upload">File Upload</a> — No validation on file uploads</li>
+        <li><a href="/users">User List (IDOR)</a> — List of users, links to profiles</li>
+        <li><a href="/profile?id=1">Profile (IDOR)</a> — View user profile by ID</li>
+        <li><a href="/redirect-demo">Open Redirect Demo</a> — Test open redirect scenarios</li>
+        <li><a href="/search">SQL Injection Search</a> — Search form vulnerable to SQLi</li>
+        <li><a href="/change-password">CSRF Demo</a> — Change password form with no CSRF protection</li>
+        <li><a href="/crash">Information Disclosure</a> — Route that leaks stack trace</li>
+        <li><a href="/weak-login">Weak Session Management</a> — Predictable session ID demo</li>
+        <li><a href="/ping">Command Injection</a> — Ping form vulnerable to command injection</li>
+        <li><a href="/brute-login">Brute Force Login</a> — Login form with no lockout/rate limiting</li>
+    </ul>
+    <p><b>Note:</b> This app is intentionally vulnerable and for educational use only.</p>
+</body>
+</html> 

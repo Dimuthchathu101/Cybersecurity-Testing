@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Security Test Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 900px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px #ccc; }
+        h1 { text-align: center; }
+        h3 { margin-bottom: 5px; }
+        pre { background: #eee; padding: 8px; border-radius: 4px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        th { background: #f0f0f0; }
+        .legend { margin-top: 20px; }
+        .legend span { display: inline-block; width: 20px; height: 20px; border-radius: 3px; margin-right: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login Security Test Report</h1>
+        <p><b>Date:</b> 2025-07-22 12:43:22</p>
+        <div class="legend">
+            <b>Legend:</b>
+            <span style="background:#d4edda"></span> Pass
+            <span style="background:#f8d7da"></span> Fail
+        </div>
+        <table>
+            <tr><th></th><th>Test</th><th>Status</th><th>Details</th></tr>
+            <tr style="background:#f8d7da"><td>❌</td><td><b>SQL Injection Test</b><br><small>Attempts to bypass authentication using a classic SQL injection payload.</small></td><td>200</td><td><pre style="white-space:pre-wrap">Welcome admin!</pre></td></tr><tr style="background:#d4edda"><td>✅</td><td><b>Brute Force Test</b><br><small>Attempts to brute-force the login by trying several common passwords.</small></td><td>Multiple</td><td><pre style="white-space:pre-wrap">Trying password: wrongpass | Status: 200 | Found: False
+Trying password: 123456 | Status: 200 | Found: False
+Trying password: secret | Status: 200 | Found: True
+Trying password: admin | Status: 200 | Found: False
+</pre></td></tr><tr style="background:#d4edda"><td>✅</td><td><b>Input Validation Test</b><br><small>Checks if the login form properly rejects overly long usernames.</small></td><td>200</td><td><pre style="white-space:pre-wrap"><!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    
+        <p style="color:red">Invalid credentials</p>
+    
+    <form method="POST">
+        <input type="te</pre></td></tr><tr style="background:#f8d7da"><td>❌</td><td><b>Account Lockout/Rate Limiting Test</b><br><small>Checks if repeated failed logins trigger a lockout or rate limiting.</small></td><td>Multiple</td><td><pre style="white-space:pre-wrap">Attempt 1: 200 | <!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    
+      
+Attempt 2: 200 | <!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    
+      
+Attempt 3: 200 | <!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    
+      
+Attempt 4: 200 | <!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    
+      
+Attempt 5: 200 | <!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    
+      
+Attempt 6: 200 | <!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    
+      
+Attempt 7: 200 | <!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    
+      
+</pre></td></tr><tr style="background:#d4edda"><td>✅</td><td><b>Timing Attack Test</b><br><small>Measures response time for valid vs invalid credentials to detect timing leaks.</small></td><td>N/A</td><td><pre style="white-space:pre-wrap">Valid login time: 0.0051s
+Invalid login time: 0.0042s</pre></td></tr><tr style="background:#d4edda"><td>✅</td><td><b>Error Message Consistency Test</b><br><small>Checks if error messages are consistent for invalid username and password.</small></td><td>N/A</td><td><pre style="white-space:pre-wrap">Consistent</pre></td></tr><tr style="background:#f8d7da"><td>❌</td><td><b>CSRF Protection Test</b><br><small>Checks if the login form includes a CSRF token field.</small></td><td>N/A</td><td><pre style="white-space:pre-wrap">No CSRF token found.</pre></td></tr><tr style="background:#f8d7da"><td>❌</td><td><b>Session Fixation Test</b><br><small>Attempts to login with a fixed session ID to test for session fixation vulnerability.</small></td><td>N/A</td><td><pre style="white-space:pre-wrap">Login succeeded with fixed session ID.</pre></td></tr>
+        </table>
+        <h2>Recommendations</h2>
+        <ul>
+            <li><b>SQL Injection Test:</b> Attempts to bypass authentication using a classic SQL injection payload.</li><li><b>Account Lockout/Rate Limiting Test:</b> Checks if repeated failed logins trigger a lockout or rate limiting.</li><li><b>CSRF Protection Test:</b> Checks if the login form includes a CSRF token field.</li><li><b>Session Fixation Test:</b> Attempts to login with a fixed session ID to test for session fixation vulnerability.</li>
+        </ul>
+    </div>
+</body>
+</html>

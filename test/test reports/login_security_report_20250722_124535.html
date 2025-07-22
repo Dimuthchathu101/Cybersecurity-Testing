@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Security Test Report</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 950px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 16px #bbb; }
+        h1 { text-align: center; color: #222; letter-spacing: 1px; }
+        .legend { margin: 20px 0; text-align: center; }
+        .legend span { display: inline-block; width: 20px; height: 20px; border-radius: 3px; margin-right: 8px; }
+        .test-card { margin: 24px 0; padding: 18px 20px; border-radius: 10px; box-shadow: 0 2px 8px #e0e0e0; transition: box-shadow 0.2s; }
+        .test-card:hover { box-shadow: 0 4px 16px #b0b0b0; }
+        .test-header { display: flex; align-items: center; font-size: 1.2em; margin-bottom: 6px; }
+        .test-icon { font-size: 1.5em; margin-right: 12px; }
+        .test-title { font-weight: bold; color: #222; }
+        .test-desc { color: #555; margin-bottom: 8px; font-size: 0.98em; }
+        .test-status { margin-bottom: 6px; }
+        .test-details pre { background: #f8f9fa; padding: 10px; border-radius: 6px; font-size: 0.97em; overflow-x: auto; }
+        h2 { color: #1a73e8; margin-top: 40px; }
+        ul { margin-left: 20px; }
+        @media (max-width: 600px) {
+            .container { padding: 10px; }
+            .test-card { padding: 10px 6px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login Security Test Report</h1>
+        <p><b>Date:</b> 2025-07-22 12:45:35</p>
+        <div class="legend">
+            <b>Legend:</b>
+            <span style="background:#e6ffed; border:2px solid #28a745"></span> Pass
+            <span style="background:#ffeaea; border:2px solid #dc3545"></span> Fail
+        </div>
+        
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">SQL Injection Test</span>
+        </div>
+        <div class="test-desc">Attempts to bypass authentication using a classic SQL injection payload.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre>Welcome admin!</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">Brute Force Test</span>
+        </div>
+        <div class="test-desc">Attempts to brute-force the login by trying several common passwords.</div>
+        <div class="test-status"><b>Status:</b> Multiple</div>
+        <div class="test-details"><pre>Trying password: wrongpass | Status: 200 | Found: False
+Trying password: 123456 | Status: 200 | Found: False
+Trying password: secret | Status: 200 | Found: True
+Trying password: admin | Status: 200 | Found: False
+</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">Input Validation Test</span>
+        </div>
+        <div class="test-desc">Checks if the login form properly rejects overly long usernames.</div>
+        <div class="test-status"><b>Status:</b> 200</div>
+        <div class="test-details"><pre><!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    
+        <p style="color:red">Invalid credentials</p>
+    
+    <form method="POST">
+        <input type="te</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Account Lockout/Rate Limiting Test</span>
+        </div>
+        <div class="test-desc">Checks if repeated failed logins trigger a lockout or rate limiting.</div>
+        <div class="test-status"><b>Status:</b> Multiple</div>
+        <div class="test-details"><pre>Attempt 1: 200 | <!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    
+      
+Attempt 2: 200 | <!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    
+      
+Attempt 3: 200 | <!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    
+      
+Attempt 4: 200 | <!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    
+      
+Attempt 5: 200 | <!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    
+      
+Attempt 6: 200 | <!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    
+      
+Attempt 7: 200 | <!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    
+      
+</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">Timing Attack Test</span>
+        </div>
+        <div class="test-desc">Measures response time for valid vs invalid credentials to detect timing leaks.</div>
+        <div class="test-status"><b>Status:</b> N/A</div>
+        <div class="test-details"><pre>Valid login time: 0.0034s
+Invalid login time: 0.0020s</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#e6ffed;border:2px solid #28a745;">
+        <div class="test-header">
+            <span class="test-icon">✅</span>
+            <span class="test-title">Error Message Consistency Test</span>
+        </div>
+        <div class="test-desc">Checks if error messages are consistent for invalid username and password.</div>
+        <div class="test-status"><b>Status:</b> N/A</div>
+        <div class="test-details"><pre>Consistent</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">CSRF Protection Test</span>
+        </div>
+        <div class="test-desc">Checks if the login form includes a CSRF token field.</div>
+        <div class="test-status"><b>Status:</b> N/A</div>
+        <div class="test-details"><pre>No CSRF token found.</pre></div>
+    </div>
+    
+    <div class="test-card" style="background:#ffeaea;border:2px solid #dc3545;">
+        <div class="test-header">
+            <span class="test-icon">❌</span>
+            <span class="test-title">Session Fixation Test</span>
+        </div>
+        <div class="test-desc">Attempts to login with a fixed session ID to test for session fixation vulnerability.</div>
+        <div class="test-status"><b>Status:</b> N/A</div>
+        <div class="test-details"><pre>Login succeeded with fixed session ID.</pre></div>
+    </div>
+    
+        <h2>Recommendations</h2>
+        <ul>
+            <li><b>SQL Injection Test:</b> Attempts to bypass authentication using a classic SQL injection payload.</li><li><b>Account Lockout/Rate Limiting Test:</b> Checks if repeated failed logins trigger a lockout or rate limiting.</li><li><b>CSRF Protection Test:</b> Checks if the login form includes a CSRF token field.</li><li><b>Session Fixation Test:</b> Attempts to login with a fixed session ID to test for session fixation vulnerability.</li>
+        </ul>
+    </div>
+</body>
+</html>

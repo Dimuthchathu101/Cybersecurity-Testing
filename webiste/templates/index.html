@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h1>Search</h1>
+    <form>
+        <input type="text" name="search">
+        <button type="submit">Search</button>
+    </form>
+    
+    <!-- XSS vulnerable section -->
+    {% if search_query %}
+        <p>Results for: {{ search_query | safe }}</p>
+    {% endif %}
+</body>
+</html> 

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weak Login (Session Demo)</title>
+</head>
+<body>
+    <h1>Weak Login (Predictable Session)</h1>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+    <form method="POST">
+        <label>Username:</label>
+        <input type="text" name="username" placeholder="Username"><br>
+        <button type="submit">Login</button>
+    </form>
+    <a href="/">Back to Login</a>
+</body>
+</html> 

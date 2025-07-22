@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile (IDOR Demo)</title>
+</head>
+<body>
+    <h1>User Profile</h1>
+    {% if user %}
+        <p><b>ID:</b> {{ user[0] }}</p>
+        <p><b>Username:</b> {{ user[1] }}</p>
+        <p><b>Email:</b> {{ user[2] }}</p>
+    {% else %}
+        <p>User not found for id: {{ user_id }}</p>
+    {% endif %}
+    <a href="/users">Back to Users</a>
+</body>
+</html> 
